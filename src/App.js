@@ -1,10 +1,11 @@
 
 import { useState } from 'react';
 import './App.css';
-import AddMovie from './components.js/Addmovie';
-import ListMovies from './components.js/ListMovie';
 import NavMovie from './components.js/NavMovie';
-import SearchMovie from './components.js/Searchmovie';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components.js/Home';
+import PageMovie from './components.js/PageMovie';
+import DescMovie from './components.js/DescMovie';
 
 
 
@@ -22,13 +23,14 @@ function App() {
   return (
     <div>
       <NavMovie/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/PageMovies' element={<PageMovie searchT={searchT} rateT={rateT} setSearchT={setSearchT} setRateT={setRateT} movies={movies} setMovies={setMovies}/>}/>
+        <Route path='/DescMovie/:id' element={<DescMovie movies={movies}/>}/>
+      </Routes>
+      
 
-      <div className='searchAdd'>
-        <SearchMovie searchT={searchT} rateT={rateT} setSearchT={setSearchT} setRateT={setRateT}/>
-        <AddMovie movies={movies} setMovies={setMovies}/>
-      </div>
 
-      <ListMovies movies={movies} searchT={searchT} rateT={rateT}/>
     </div>
   );
 }
